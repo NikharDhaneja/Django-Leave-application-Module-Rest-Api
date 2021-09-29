@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Sendrequest</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/templates/css/styles.css' %}">
+    <link rel="stylesheet"
+                  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+                  crossorigin="anonymous" />
+
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="row mt-5 ">
+                <div style="height: 200px;" class=" col-md-10 offset-md-1 text-center scrollable ">
+                    <table class="table table-bordered table-striped ">
+                        <tr class="bg-info" id="header">
+                        </tr>
+                        <tbody id="requests">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div style="height: 200px;" class="col-md-6 offset-md-3 text-center  ">
+                    <form  id="requestForm" >
+                        {% csrf_token %}
+                        <h5>Leave</h5>
+                        <label for="start_date">From </label><br>
+                        <input type="date" id="start_date"  name="start_date" required><br><br>
+                        <label for="end_date">To</label><br>
+                        <input type="date" id="end_date"  name="end_date" required><br><br>
+                        <input type="submit" value="Send">
+                    </form>
+                    <div class="mt-3 alert alert-danger d-none" role="alert" id="error-date">
+
+                    </div>
+                </div>
+                <div class="mt-3 position-fixed offset-md-8 offset-9">
+                    <button type="button" class="btn btn-light" onclick="logout()">Logout</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <script>
+            // GET
+
+            fetch("api/",{
+                method: 'GET',
+                headers:{
+                    'Authorization' : 'Bearer '+localStorage.getItem("token"),
+                    'Content-Type': 'application/json'
+                }
+            })
+            // Converting received data to JSON
+            .then(response => {
+                if(response.ok){
+                    return response.json()
+                }else{
+                    window.location.href = "/";
+                }
+            })
+            .then(json => {
+                 if(json.length > 0){document.getElementById('header').innerHTML = '<th>request_id</th><th>start_date</th><th>end_date</th><th>status</th><th>remaining_leaves</th>';}
+                // Create a variable to store HTML
+                var table = document.getElementById('requests');
+
+                // Loop through each data and add a table row
+                json.forEach(request => {
+                    row = `<tr>
+                        <td>${request.request_id} </td>
+                        <td>${request.start_date}</td>
+                        <td>${request.end_date} </td>
+                        <td>${request.status}</td>
+                        <td>${request.remaining_leaves} </td>
+                    </tr>`;
+                    table.innerHTML += row;
+                });
+            })
+            .catch(error => console.log(error));
+
+        </script>
+        <script src="{% static '/templates/js/sendrequest.js' %}"></script>
+    </body>
+</html>
