@@ -6,7 +6,7 @@ It allow employees to apply for leave and manager of team which belongs to that 
 * Django Rest Framework
 * Html
 * Css
-* Javascript | Fetch Api - To make api calls from frontend |
+* Javascript
 
 ## Features
 * Login
@@ -18,3 +18,7 @@ It allow employees to apply for leave and manager of team which belongs to that 
 * Signals
   - To calculate remaining leaves
 * Logout
+* Fetch Api
+  - To make api calls from frontend
+* ApiViews
+  - To respond api calls from frontend
