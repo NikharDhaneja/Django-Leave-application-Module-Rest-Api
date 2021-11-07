@@ -18,5 +18,3 @@ It allow employees to apply for leave and manager of team which belongs to that 
 * Signals
   - To calculate remaining leaves
 * Logout
-
-[Goto website](http://leaveapp-nik.herokuapp.com/)
