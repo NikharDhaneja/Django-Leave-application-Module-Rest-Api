@@ -12,8 +12,11 @@ It allow employees to apply for leave and manager of team which belongs to that 
 * Login
 * Validations
 * JWT Authentication
-* Form
+* Form 
+  - To apply for leave 
+  - To accept or reject leave
 * Signals
+  - To calculate remaining leaves
 * Logout
 
 [Goto website](http://leaveapp-nik.herokuapp.com/)
