@@ -11,6 +11,7 @@ It allow employees to apply for leave and manager of team which belongs to that 
 ## Features
 * Login
 * Validations
+* JWT Authentication
 * Form
 * Signals
 * Logout
