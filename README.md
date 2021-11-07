@@ -21,4 +21,4 @@ It allow employees to apply for leave and manager of team which belongs to that 
 * Fetch Api
   - To make api calls from frontend
 * APIViews
-  - To respond api calls from frontend
+  - To respond api calls from Backend
